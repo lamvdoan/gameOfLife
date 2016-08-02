@@ -10,11 +10,11 @@ public class Game {
     public static void main(String[] args) {
         Grid grid = Grid.getInstance();
 
-        grid.getCell(new Coordinate(0,1)).setAlive(true);
-        grid.getCell(new Coordinate(0,2)).setAlive(true);
-        grid.getCell(new Coordinate(1,1)).setAlive(true);
-        grid.getCell(new Coordinate(2,4)).setAlive(true);
-        grid.getCell(new Coordinate(3,3)).setAlive(true);
+        grid.getCell(new Coordinate(0,1)).setAlive();
+        grid.getCell(new Coordinate(0,2)).setAlive();
+        grid.getCell(new Coordinate(1,1)).setAlive();
+        grid.getCell(new Coordinate(2,4)).setAlive();
+        grid.getCell(new Coordinate(3,3)).setAlive();
         grid.displayGridDontCalculateLife();
 
         for(int i=0; i<4; i++) {

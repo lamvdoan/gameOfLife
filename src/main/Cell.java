@@ -135,7 +135,7 @@ public class Cell {
         }
     }
 
-    public void setAlive(Boolean alive) {
-        isAlive = alive;
+    public void setAlive() {
+        this.isAlive = true;
     }
 }

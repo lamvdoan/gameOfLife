@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import static java.lang.System.out;
 
 public class Grid {
     static final Integer MAX_ROWS = 15;
@@ -11,7 +12,7 @@ public class Grid {
     List<List<Cell>> rows = new ArrayList<>();
     Integer displayCount = 1;
 
-    private static Grid instance = new Grid();
+    private static Grid instance = null;
 
     public static Grid getInstance() {
         if(instance == null) {
@@ -44,7 +45,7 @@ public class Grid {
                 printLife(row, col);
             }
 
-            Functions.println();
+            out.println();
         }
     }
 
@@ -57,23 +58,23 @@ public class Grid {
                 printLife(row, col);
             }
 
-            Functions.println();
+            out.println();
         }
     }
 
     private void initializeDisplay() {
-        Functions.println();
-        Functions.println("Display #" + displayCount++);
-        Functions.println();
+        out.println();
+        out.println("Display #" + displayCount++);
+        out.println();
 
         if(Grid.MAX_ROWS == 10) {
-            Functions.println("  0 1 2 3 4 5 6 7 8 9");
+            out.println("  0 1 2 3 4 5 6 7 8 9");
         }
     }
 
     private void displayNumberRows(Integer row) {
         if(Grid.MAX_ROWS == 10) {
-            Functions.print(row + " ");
+            out.print(row + " ");
         }
     }
 
@@ -83,9 +84,9 @@ public class Grid {
 
     private void printLife(int row, int col) {
         if(rows.get(row).get(col).isAlive) {
-            Functions.print(O + " ");
+            out.print(O + " ");
         } else {
-            Functions.print(X + " ");
+            out.print(X + " ");
         }
     }
 }
