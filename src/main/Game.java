@@ -15,7 +15,7 @@ public class Game {
         grid.getCell(new Coordinate(1,1)).setAlive();
         grid.getCell(new Coordinate(2,4)).setAlive();
         grid.getCell(new Coordinate(3,3)).setAlive();
-        grid.displayGridDontCalculateLife();
+        grid.displayGrid(false);
 
         for(int i=0; i<4; i++) {
             grid.displayGrid();

@@ -11,6 +11,8 @@ public class Cell {
     }
 
     public void calculateSelfLife() {
+        calculateNeighborsLife();
+
         if(this.isAlive) {
             if(countOfLiveNeighbors < 2 || countOfLiveNeighbors > 3) {
                 isAlive = false;
@@ -28,73 +30,107 @@ public class Cell {
 
         // CHECK Corners
         if(coordinate.getRow() == 0 && coordinate.getCol() == 0) {
-            calculateOneNeighbor(grid.getCell(new Coordinate(0, 1)));
-            calculateOneNeighbor(grid.getCell(new Coordinate(1, 1)));
-            calculateOneNeighbor(grid.getCell(new Coordinate(1, 0)));
+            calculateCellsOfTopLeftCornerCell(grid);
         } else if(coordinate.getRow() == 0 && coordinate.getCol() == Grid.MAX_COLS - 1) {
-            middleLeftCell(grid);
-            bottomLeftCell(grid);
-            bottomMiddleCell(grid);
+            calculateCellsOfTopRightCornerCell(grid);
         } else if(coordinate.getRow() == Grid.MAX_ROWS  - 1 && coordinate.getCol() == 0) {
-            topMiddleCell(grid);
-            topRightCell(grid);
-            middleRightCell(grid);
+            calculateCellsOfBottomLeftCornerCell(grid);
         } else if(coordinate.getRow() == Grid.MAX_ROWS  - 1 && coordinate.getCol() == Grid.MAX_COLS - 1) {
-            topLeftCell(grid);
-            topMiddleCell(grid);
-            middleLeftCell(grid);
+            calculateCellsOfBottomRightCornerCell(grid);
 
         // CHECK Top Middle
         } else if(coordinate.getRow() == 0) {
-            middleLeftCell(grid);
-            middleRightCell(grid);
-
-            bottomLeftCell(grid);
-            bottomMiddleCell(grid);
-            bottomRightCell(grid);
+            calculateCellsOfTopMiddleRangeOfCells(grid);
 
         // CHECK Bottom Middle
         } else if (coordinate.getRow() == Grid.MAX_ROWS - 1) {
-            topLeftCell(grid);
-            topMiddleCell(grid);
-            topRightCell(grid);
-
-            middleLeftCell(grid);
-            middleRightCell(grid);
+            calculateCellsOfBottomMiddleRangeOfCells(grid);
 
         // CHECK Left Middle
         } else if (coordinate.getCol() == 0) {
-            topMiddleCell(grid);
-            bottomMiddleCell(grid);
-
-            topRightCell(grid);
-            middleRightCell(grid);
-            bottomRightCell(grid);
+            calculateCellsOfLeftMiddleRangeOfCells(grid);
 
         // CHECK Right Middle
         } else if (coordinate.getCol() == Grid.MAX_COLS - 1) {
-            topMiddleCell(grid);
-            bottomMiddleCell(grid);
-
-            topLeftCell(grid);
-            middleLeftCell(grid);
-            bottomLeftCell(grid);
+            calculateCellsOfRightMiddleRangeOfCells(grid);
 
         // CHECK Middle Middle
         } else {
-            topLeftCell(grid);
-            topMiddleCell(grid);
-            topRightCell(grid);
-
-            middleLeftCell(grid);
-            middleRightCell(grid);
-
-            bottomLeftCell(grid);
-            bottomMiddleCell(grid);
-            bottomRightCell(grid);
+            calculateCellsOfMiddleMiddleRangeOfCells(grid);
         }
+    }
 
-        calculateSelfLife();
+    private void calculateCellsOfMiddleMiddleRangeOfCells(Grid grid) {
+        topLeftCell(grid);
+        topMiddleCell(grid);
+        topRightCell(grid);
+
+        middleLeftCell(grid);
+        middleRightCell(grid);
+
+        bottomLeftCell(grid);
+        bottomMiddleCell(grid);
+        bottomRightCell(grid);
+    }
+
+    private void calculateCellsOfRightMiddleRangeOfCells(Grid grid) {
+        topMiddleCell(grid);
+        bottomMiddleCell(grid);
+
+        topLeftCell(grid);
+        middleLeftCell(grid);
+        bottomLeftCell(grid);
+    }
+
+    private void calculateCellsOfLeftMiddleRangeOfCells(Grid grid) {
+        topMiddleCell(grid);
+        bottomMiddleCell(grid);
+
+        topRightCell(grid);
+        middleRightCell(grid);
+        bottomRightCell(grid);
+    }
+
+    private void calculateCellsOfBottomMiddleRangeOfCells(Grid grid) {
+        topLeftCell(grid);
+        topMiddleCell(grid);
+        topRightCell(grid);
+
+        middleLeftCell(grid);
+        middleRightCell(grid);
+    }
+
+    private void calculateCellsOfTopMiddleRangeOfCells(Grid grid) {
+        middleLeftCell(grid);
+        middleRightCell(grid);
+
+        bottomLeftCell(grid);
+        bottomMiddleCell(grid);
+        bottomRightCell(grid);
+    }
+
+    private void calculateCellsOfBottomRightCornerCell(Grid grid) {
+        topLeftCell(grid);
+        topMiddleCell(grid);
+        middleLeftCell(grid);
+    }
+
+    private void calculateCellsOfBottomLeftCornerCell(Grid grid) {
+        topMiddleCell(grid);
+        topRightCell(grid);
+        middleRightCell(grid);
+    }
+
+    private void calculateCellsOfTopRightCornerCell(Grid grid) {
+        middleLeftCell(grid);
+        bottomLeftCell(grid);
+        bottomMiddleCell(grid);
+    }
+
+    private void calculateCellsOfTopLeftCornerCell(Grid grid) {
+        calculateOneNeighbor(grid.getCell(new Coordinate(0, 1)));
+        calculateOneNeighbor(grid.getCell(new Coordinate(1, 1)));
+        calculateOneNeighbor(grid.getCell(new Coordinate(1, 0)));
     }
 
     private void topRightCell(Grid grid) {
